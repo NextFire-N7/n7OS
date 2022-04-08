@@ -1,17 +1,23 @@
 #include <n7OS/console.h>
 #include <n7OS/cpu.h>
+#include <malloc.h>
 
-typedef unsigned char uint8_t;
-
+__UINT16_TYPE__ *scr_tab = (__UINT16_TYPE__ *)0xB8000;
 int cursor_pos = 0;
 
 void console_putcursor()
 {
-    int pos = 0xB8000 + cursor_pos * 2;
     outb(0xF, 0x3D4);
-    outb(pos & 0xFF, 0x3D5);
+    outb(cursor_pos & 0xF, 0x3D5);
     outb(0xE, 0x3D4);
-    outb(pos >> 0xF, 0x3D5);
+    outb(cursor_pos >> 0xF, 0x3D5);
+}
+
+void console_slide()
+{
+    memcpy(scr_tab, scr_tab + 80, 80 * 24 * 2);
+    memset(scr_tab + 80 * 24, 0, 80 * 2);
+    cursor_pos = 80 * 24;
 }
 
 void console_putchar(char c)
@@ -32,6 +38,8 @@ void console_putchar(char c)
         break;
 
     case '\f':
+        memset(scr_tab, 0, 80 * 25 * 2);
+        cursor_pos = 0;
         break;
 
     case '\r':
@@ -40,14 +48,11 @@ void console_putchar(char c)
 
     default:
         if (c > 31 && c < 127)
-        {
-            uint8_t *scr_tab = (uint8_t *)0xB8000;
-            int pos = 0xB8000 + cursor_pos * 2;
-            scr_tab[pos] = (0x0F << 8) | c;
-            cursor_pos++;
-        }
+            scr_tab[cursor_pos++] = (0xF << 8) | c;
         break;
     }
+    if (cursor_pos == 80 * 25)
+        console_slide();
     console_putcursor();
 }
 
