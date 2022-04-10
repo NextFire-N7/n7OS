@@ -10,7 +10,7 @@ void kernel_start(void)
     while (1)
     {
         printf("\f");
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 30; i++)
             printf("hello world\t%i\n", i);
         printf("hello world\tbloup\nhave a nice day!");
 
