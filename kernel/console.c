@@ -7,18 +7,15 @@ int pos = 0;
 
 void console_slide()
 {
-    memcpy(scr_tab,
-           scr_tab + MAX_COL,
-           (MAX_COL * (MAX_LINE - 1)) * sizeof(console_entry));
-    memset(scr_tab + MAX_COL * (MAX_LINE - 1),
-           FORMAT << 8 | ' ',
-           MAX_COL * sizeof(console_entry));
-    pos = MAX_COL * (MAX_LINE - 1);
+    for (int i = 0; i < MAX_POS - NB_COL; i++)
+        scr_tab[i] = scr_tab[i + NB_COL];
+    for (int i = MAX_POS - NB_COL; i < MAX_POS; i++)
+        scr_tab[i] = FORMAT << 8;
+    pos = MAX_POS - NB_COL;
 }
 
 void console_putcursor()
 {
-    scr_tab[pos] = FORMAT << 8 | (scr_tab[pos] & 0xFF);
     outb(0xF, 0x3D4);
     outb(pos & 0xFF, 0x3D5);
     outb(0xE, 0x3D4);
@@ -38,18 +35,17 @@ void console_putchar(char c)
         break;
 
     case '\n':
-        pos += MAX_COL - pos % MAX_COL;
+        pos += NB_COL - pos % NB_COL;
         break;
 
     case '\f':
-        memset(scr_tab,
-               FORMAT << 8 | ' ',
-               MAX_COL * MAX_LINE * sizeof(console_entry));
+        for (int i = 0; i < MAX_POS; i++)
+            scr_tab[i] = FORMAT << 8;
         pos = 0;
         break;
 
     case '\r':
-        pos -= pos % MAX_COL;
+        pos -= pos % NB_COL;
         break;
 
     default:
@@ -58,7 +54,7 @@ void console_putchar(char c)
         break;
     }
 
-    if (pos == MAX_COL * MAX_LINE)
+    if (pos == MAX_POS)
         console_slide();
 
     console_putcursor();

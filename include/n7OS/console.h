@@ -1,9 +1,10 @@
 #ifndef __CONSOLE_H__
 #define __CONSOLE_H__
 
-#define MAX_COL 80
-#define MAX_LINE 25
-#define FORMAT 0x2F
+#define NB_COL 80
+#define NB_LINE 25
+#define MAX_POS (NB_COL * NB_LINE)
+#define FORMAT 0x0F
 
 typedef __UINT16_TYPE__ console_entry;
 
