@@ -1,10 +1,10 @@
 #ifndef __CONSOLE_H__
 #define __CONSOLE_H__
 
-#define NB_COL 80
-#define NB_LINE 25
-#define MAX_POS (NB_COL * NB_LINE)
-#define FORMAT 0x0F
+#define NB_COL 80                  // 80 columns
+#define NB_LINE 25                 // 25 lines
+#define MAX_POS (NB_COL * NB_LINE) // Maximal position
+#define FORMAT 0x0F                // Text formatting
 
 typedef __UINT16_TYPE__ console_entry;
 
