@@ -15,7 +15,3 @@ void init_irq_entry(int irq_num, uint32_t addr)
     entry->type_attr = 0x8E;
 }
 
-void handler_it_50()
-{
-    printf("\n/!\\handler_it_50/!\\\n");
-}

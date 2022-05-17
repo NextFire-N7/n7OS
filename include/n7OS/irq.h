@@ -27,6 +27,6 @@ typedef struct {
 
 void init_irq_entry(int irq_num, uint32_t addr);
 
-void handler_it_50();
+void init_irq();
 
 #endif

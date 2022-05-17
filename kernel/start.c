@@ -17,8 +17,7 @@ void kernel_start(void)
         printf("hello world\tbloup\nhave a nice day!");
 
         // test des interruptions
-        sti();
-        init_irq_entry(50, (uint32_t)handler_it_50);
+        init_irq();
         __asm__("int $50" ::);
 
         // cette fonction arrete le processeur
