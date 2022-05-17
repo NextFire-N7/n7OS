@@ -1,6 +1,7 @@
 #include <n7OS/irq.h>
 #include <n7OS/cpu.h>
 #include <stdio.h>
+#include <n7OS/time.h>
 
 extern void handler_IT();
 
