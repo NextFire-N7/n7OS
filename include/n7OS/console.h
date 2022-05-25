@@ -14,4 +14,6 @@ typedef __UINT16_TYPE__ console_entry;
  */
 void console_putbytes(const char *s, int len);
 
+void console_putbytes_at(const char *s, int len, int tpos);
+
 #endif

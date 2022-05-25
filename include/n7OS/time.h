@@ -14,7 +14,7 @@
 #define PIC_CMD_PORT 0x20
 #define PIC_DATA_PORT 0x21
 
-#define FREQUENCE 1190 // 1.19 MHz / 1 kHz
+#define FREQUENCE 1193 // 1.19 MHz / 1 kHz
 
 void init_timer();
 

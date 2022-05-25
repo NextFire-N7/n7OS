@@ -2,12 +2,13 @@
 #include <n7OS/cpu.h>
 #include <n7OS/irq.h>
 #include <inttypes.h>
-#include <stdio.h>
+#include <debug.h>
+#include <string.h>
+#include <n7OS/console.h>
 
 extern void handler_IT_timer();
 
-int i = 0;
-char 
+int time = 0;
 
 void demasquer()
 {
@@ -28,10 +29,24 @@ void init_timer()
     demasquer();
 }
 
+void print_time(int i)
+{
+    // ouais c'est moche
+    int h, m, s, ms;
+    h = i / 3600000;
+    m = (i - h * 3600000) / 60000;
+    s = (i - h * 3600000 - m * 60000) / 1000;
+    ms = i - h * 3600000 - m * 60000 - s * 1000;
+    // print
+    char buf[12];
+    sprintf(buf, "%02i:%02i:%02i.%03i", h, m, s, ms);
+    console_putbytes_at(buf, 12, NB_COL - 12);
+}
+
 void handler_it_timer()
 {
     masquer();
-    printf("\r%i", i++);
+    print_time(time++);
     outb(0x20, PIC_CMD_PORT);
     demasquer();
 }
