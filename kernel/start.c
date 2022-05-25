@@ -16,7 +16,7 @@ void kernel_start(void)
 
     // affichage
     printf("\f");
-    for (int i = 0; i < 30; i++)
+    for (int i = 0; i < 10000; i++)
         printf("hello world\t%i\n", i);
 
     // irq
@@ -26,7 +26,7 @@ void kernel_start(void)
     if (example() == 1)
         printf("Appel systeme systeme ok\n");
 
-    // shutdown(1);
+    shutdown(1);
 
     // on ne doit jamais sortir de kernel_start
     while (1)

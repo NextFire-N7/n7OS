@@ -6,6 +6,8 @@
 #define MAX_POS (NB_COL * NB_LINE) // Maximal position
 #define FORMAT 0x0F                // Text formatting
 
+#define START_POS NB_COL
+
 typedef __UINT16_TYPE__ console_entry;
 
 /*

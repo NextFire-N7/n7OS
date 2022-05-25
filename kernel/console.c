@@ -2,12 +2,12 @@
 #include <n7OS/cpu.h>
 
 console_entry *scr_tab = (console_entry *)0xB8000;
-int cursor_pos = 0; // cursor position
+int cursor_pos = START_POS; // cursor position
 
 // Slide the screen up one line
 void console_slide()
 {
-    for (int i = 0; i < MAX_POS - NB_COL; i++)
+    for (int i = START_POS; i < MAX_POS - NB_COL; i++)
         scr_tab[i] = scr_tab[i + NB_COL];
     for (int i = MAX_POS - NB_COL; i < MAX_POS; i++)
         scr_tab[i] = FORMAT << 8;
@@ -43,7 +43,7 @@ void console_putchar(char c)
     case '\f': // flush
         for (int i = 0; i < MAX_POS; i++)
             scr_tab[i] = FORMAT << 8;
-        cursor_pos = 0;
+        cursor_pos = START_POS;
         break;
 
     case '\r': // return to beginning of line
