@@ -32,15 +32,14 @@ void init_timer()
 void print_time(int i)
 {
     // ouais c'est moche
-    int h, m, s, ms;
+    int h, m, s;
     h = i / 3600000;
     m = (i - h * 3600000) / 60000;
     s = (i - h * 3600000 - m * 60000) / 1000;
-    ms = i - h * 3600000 - m * 60000 - s * 1000;
     // print
-    char buf[12];
-    sprintf(buf, "%02i:%02i:%02i.%03i", h, m, s, ms);
-    console_putbytes_at(buf, 12, NB_COL - 12);
+    char buf[8];
+    sprintf(buf, "%02i:%02i:%02i", h, m, s);
+    console_putbytes_at(buf, 8, NB_COL - 8);
 }
 
 void handler_it_timer()

@@ -75,8 +75,7 @@ void console_putbytes_at(const char *s, int len, int tpos)
     int prev_pos = cursor_pos;
     cursor_pos = tpos;
     console_putcursor();
-    for (int i = 0; i < len; i++)
-        console_putchar(s[i]);
+    console_putbytes(s, len);
     cursor_pos = prev_pos;
     console_putcursor();
 }
