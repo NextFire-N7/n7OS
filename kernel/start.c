@@ -9,20 +9,20 @@
 
 void kernel_start(void)
 {
+    // inits
+    init_irq();
+    init_timer();
+    init_syscall();
+
     // affichage
     printf("\f");
-    // for (int i = 0; i < 30; i++)
-    //     printf("hello world\t%i\n", i);
+    for (int i = 0; i < 30; i++)
+        printf("hello world\t%i\n", i);
 
     // irq
-    init_irq();
     // __asm__("int $50" ::);
 
-    // timer
-    init_timer();
-
     // syscalls
-    init_syscall();
     if (example() == 1)
         printf("Appel systeme systeme ok\n");
 
