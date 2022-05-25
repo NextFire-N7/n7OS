@@ -4,21 +4,29 @@
 #include <stdio.h>
 #include <n7OS/irq.h>
 #include <n7OS/time.h>
+#include <unistd.h>
+#include <n7OS/sys.h>
 
 void kernel_start(void)
 {
-    // test de l'affichage
+    // affichage
     printf("\f");
     // for (int i = 0; i < 30; i++)
     //     printf("hello world\t%i\n", i);
-    // printf("hello world\tbloup\nhave a nice day!");
 
-    // init irq et test
+    // irq
     init_irq();
     // __asm__("int $50" ::);
 
-    // init timer
+    // timer
     init_timer();
+
+    // syscalls
+    init_syscall();
+    if (example() == 1)
+        printf("Appel systeme systeme ok\n");
+
+    // shutdown(1);
 
     // on ne doit jamais sortir de kernel_start
     while (1)
