@@ -13,5 +13,5 @@ void init_irq()
 
 void handler_en_C()
 {
-    printf("\n/!\\handler_it_50/!\\\n");
+    printf("/!\\handler_it_50/!\\\n");
 }

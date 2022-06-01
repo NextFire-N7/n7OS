@@ -6,6 +6,7 @@
 #include <n7OS/time.h>
 #include <unistd.h>
 #include <n7OS/sys.h>
+#include <n7OS/process.h>
 
 void kernel_start(void)
 {
@@ -16,17 +17,19 @@ void kernel_start(void)
 
     // affichage
     printf("\f");
-    for (int i = 0; i < 10000; i++)
-        printf("hello world\t%i\n", i);
+    // for (int i = 0; i < 10000; i++)
+    //     printf("hello world\t%i\n", i);
 
     // irq
-    // __asm__("int $50" ::);
+    __asm__("int $50" ::);
 
     // syscalls
     if (example() == 1)
         printf("Appel systeme systeme ok\n");
+    // shutdown(1);
 
-    shutdown(1);
+    // processus
+    init_process();
 
     // on ne doit jamais sortir de kernel_start
     while (1)
