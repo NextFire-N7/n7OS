@@ -46,18 +46,17 @@ void scheduler()
             break;
         }
     }
-    printf(">> new pid, name: %i, %s\n", new_pid, process_table[new_pid].name);
+    printf(">> new pid: %i\n", new_pid);
     if (new_pid != -1)
     {
-        process_table[curr_pid].state = PRET;
+        if (current_process->state == ELU)
+            current_process->state = PRET;
         process_table[new_pid].state = ELU;
         current_process = &process_table[new_pid];
         ctx_sw(&process_table[curr_pid].ctx, &process_table[new_pid].ctx);
     }
     else
-    {
         printf("> scheduler: no process to switch to\n");
-    }
 }
 
 void arreter()
