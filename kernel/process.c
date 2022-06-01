@@ -79,16 +79,7 @@ pid_t getpid()
     return current_process->pid;
 }
 
-void init()
-{
-    while (1)
-    {
-        printf("Hello, world from init\n");
-        scheduler();
-        hlt();
-    }
-}
-
+extern void init();
 extern void processus1();
 
 void init_process()
