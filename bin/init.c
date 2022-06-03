@@ -4,10 +4,9 @@
 
 void init()
 {
+    printf("Hello, world from init\n");
     while (1)
     {
-        printf("Hello, world from init\n");
-        // schedule();
         hlt();
     }
 }

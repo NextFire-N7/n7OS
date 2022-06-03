@@ -11,7 +11,7 @@ extern void handler_syscall();
 
 void init_syscall()
 {
-    // ajout de la fonction de traitement de l'appel systeme
+    // ajout de la fonction de traitement de l'appel systeme 
     add_syscall(NR_example, sys_example);
     add_syscall(NR_shutdown, sys_shutdown);
     add_syscall(NR_write, sys_write);
@@ -48,7 +48,7 @@ int sys_write(const char *s, int len)
 
 int sys_schedule()
 {
-    printf("SCHEDULE\n");
+    printf("SYSCALL SCHEDULE\n");
     scheduler();
     return 0;
 }

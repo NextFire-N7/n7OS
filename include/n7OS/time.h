@@ -25,7 +25,7 @@
 #define FREQUENCE 1190 // 1.19 MHz / 1 kHz
 
 // période round robin
-#define RR_PERIOD 5000 // 5s
+#define RR_PERIOD 2000 // 2s
 
 void init_timer();
 

@@ -51,10 +51,9 @@ void print_time(int i)
 
 void handler_it_timer()
 {
-    masquer();
-    print_time(time++);
     outb(0x20, PIC_CMD_PORT); // ack
-    demasquer();
+    sti();
+    print_time(time++);
     if (time % RR_PERIOD == 0)
         scheduler();
 }
