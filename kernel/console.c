@@ -70,6 +70,7 @@ void console_putbytes(const char *s, int len)
         console_putchar(s[i]);
 }
 
+// pour print à une certaine position puis "revenir"
 void console_putbytes_at(const char *s, int len, int tpos)
 {
     int prev_pos = cursor_pos;

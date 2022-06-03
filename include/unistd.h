@@ -51,6 +51,8 @@
 	}
 
 int example();
+
+// syscalls définis
 int shutdown(int n);
 int write(const char *s, int len);
 int schedule();

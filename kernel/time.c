@@ -5,16 +5,19 @@
 #include <debug.h>
 #include <string.h>
 #include <n7OS/console.h>
+#include <n7OS/process.h>
 
 extern void handler_IT_timer();
 
-int time = 0;
+static int time = 0;
 
+// demasquage de l'IT
 void demasquer()
 {
     outb(inb(PIC_DATA_PORT) & ~(1 << IRQ_PORT_NUM), PIC_DATA_PORT);
 }
 
+// masquage de l'IT
 void masquer()
 {
     outb(inb(PIC_DATA_PORT) | (1 << IRQ_PORT_NUM), PIC_DATA_PORT);
@@ -22,10 +25,14 @@ void masquer()
 
 void init_timer()
 {
+    // configuration du PIT
     outb(PIT_CONFIG, PIT_REG_PORT);
+    // fréquence timer
     outb(FREQUENCE & 0xFF, PIT_CH0_PORT);
     outb(FREQUENCE >> 8, PIT_CH0_PORT);
+    // enregistrement du handler
     init_irq_entry(TIMER_IT, (uint32_t)handler_IT_timer);
+    // demasquage de l'IT
     demasquer();
 }
 
@@ -46,6 +53,8 @@ void handler_it_timer()
 {
     masquer();
     print_time(time++);
-    outb(0x20, PIC_CMD_PORT);
+    outb(0x20, PIC_CMD_PORT); // ack
     demasquer();
+    if (time % RR_PERIOD == 0)
+        scheduler();
 }

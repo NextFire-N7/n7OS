@@ -10,6 +10,8 @@ typedef uint32_t pid_t;
 
 typedef void *(*fnptr)();
 
+// Etat d'un processus
+// NONE: vide
 typedef enum
 {
     NONE,
@@ -18,6 +20,7 @@ typedef enum
     BLOQUE,
 } PROCESS_STATE;
 
+// Processus
 typedef struct
 {
     pid_t pid;
@@ -27,6 +30,7 @@ typedef struct
     uint32_t ctx[5];
 } process_t;
 
+// Registres
 typedef enum
 {
     EBX,
@@ -36,6 +40,7 @@ typedef enum
     EDI,
 } REGISTER;
 
+// fonctions du noyau
 pid_t creer(const char *name, fnptr function);
 void scheduler();
 void arreter();
@@ -43,6 +48,7 @@ void terminer();
 
 pid_t getpid();
 
+// à fin de tests
 void init_process();
 
 #endif
