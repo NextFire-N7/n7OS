@@ -52,8 +52,8 @@ void print_time(int i)
 void handler_it_timer()
 {
     outb(0x20, PIC_CMD_PORT); // ack
-    sti();
     print_time(time++);
+    sti(); // le timer ne marche plus après schedule sinon
     if (time % RR_PERIOD == 0)
         scheduler();
 }

@@ -1,10 +1,10 @@
 #ifndef __CONSOLE_H__
 #define __CONSOLE_H__
 
-#define NB_COL 80                  // 80 columns
-#define NB_LINE 25                 // 25 lines
-#define MAX_POS (NB_COL * NB_LINE) // Maximal position
-#define FORMAT 0x0F                // Text formatting
+#define NB_COL 80                 // 80 columns
+#define NB_ROW 25                 // 25 rows
+#define MAX_POS (NB_COL * NB_ROW) // Maximal position
+#define FORMAT 0x0F               // Text formatting
 
 #define START_POS NB_COL
 
