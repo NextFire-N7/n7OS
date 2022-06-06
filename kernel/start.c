@@ -8,6 +8,14 @@
 #include <n7OS/sys.h>
 #include <n7OS/process.h>
 
+/**
+ * Ce qui fonctionne :
+ * - L'affichage
+ * - Les IRQ
+ * - Syscalls `write`, `shutdown` et `schedule`
+ * - Timer
+ * - Processus et RR
+ */
 void kernel_start(void)
 {
     // inits
