@@ -1,4 +1,4 @@
-#include <n7os/time.h>
+#include <n7OS/time.h>
 #include <n7OS/cpu.h>
 #include <n7OS/irq.h>
 #include <inttypes.h>
